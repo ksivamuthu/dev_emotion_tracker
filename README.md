@@ -1,4 +1,6 @@
-# dev_emotion_tracker
+[![Codemagic build status](https://api.codemagic.io/apps/5c913dc878ed13001bdcc012/5c913dc878ed13001bdcc011/status_badge.svg)](https://codemagic.io/apps/5c913dc878ed13001bdcc012/5c913dc878ed13001bdcc011/latest_build)
+
+# Developer Emotion Tracker
 
 A new Flutter project.
 
