@@ -15,7 +15,7 @@ class AddEmotionDialogState extends State<AddEmotionDialog> {
                                       "sad", "secret", "smart", "smile", "surprised", "suspicious", "tongue-out", 
                                       "unhappy", "wink"]);
 
-  List<String> _selectedEmotions = new List<String>();
+  String _selectedEmotion;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +35,7 @@ class AddEmotionDialogState extends State<AddEmotionDialog> {
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext contex) {
-                  return DevActivities(emotions: _selectedEmotions);
+                  return DevActivities(emotion: _selectedEmotion);
               }
             ));
           }
@@ -85,9 +85,9 @@ class AddEmotionDialogState extends State<AddEmotionDialog> {
             children: <Widget>[
               Image.asset("images/$emotion.png", width: 50, height: 50),
               Chip(label: Text("$emotion"),
-               avatar: _selectedEmotions.contains(emotion) ? Icon(Icons.check) : null, 
+               avatar: _selectedEmotion == emotion ? Icon(Icons.check) : null, 
                labelStyle: TextStyle(color: Colors.white),
-               backgroundColor: _selectedEmotions.contains(emotion)? Colors.green: Colors.blueGrey)
+               backgroundColor: _selectedEmotion == emotion? Colors.green: Colors.blueGrey)
             ]
           )
         ) 
@@ -99,11 +99,7 @@ class AddEmotionDialogState extends State<AddEmotionDialog> {
 
   void _onEmotionSelected(String emotion) {
     setState(() {
-      if(_selectedEmotions.contains(emotion)) {
-         _selectedEmotions.remove(emotion);
-      } else {
-        _selectedEmotions.add(emotion);
-      }
+      _selectedEmotion = emotion;
     });
   }
 }
