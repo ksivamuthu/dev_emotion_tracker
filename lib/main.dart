@@ -115,10 +115,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ),
             ),
-            child: Image.asset(
-              "images/${journalEntry.emotion}.png",
-              width: 50,
-              height: 50,
+            child: Text(
+              "${journalEntry.emotion.icon}",
+              style: TextStyle(fontSize: 42),
             ),
           ),
           title: Column(
@@ -137,7 +136,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Padding(
                 padding: EdgeInsets.all(5.0),
                 child: Text(
-                  journalEntry.emotion.toUpperCase(),
+                  journalEntry.emotion.title.toUpperCase(),
                   style: TextStyle(
                     color: Colors.black87,
                     fontWeight: FontWeight.w600,

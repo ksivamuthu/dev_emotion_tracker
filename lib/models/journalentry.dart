@@ -1,7 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:dev_emotion_tracker/models/emotion.dart';
 
 class JournalEntry {
-  final String emotion;
+  final Emotion emotion;
   final List<String> activities;
   final DateTime entryDate;
 
@@ -9,7 +10,7 @@ class JournalEntry {
 
   static fromData(Map data) {
     return JournalEntry(
-      data["emotion"],
+      Emotion.fromData(data["emotion"]["id"], data["emotion"]),
       List.from(data["activities"]),
       (data["timestamp"] as Timestamp).toDate(),
     );

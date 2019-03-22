@@ -1,10 +1,11 @@
 import 'package:dev_emotion_tracker/models/activity.dart';
+import 'package:dev_emotion_tracker/models/emotion.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class DevActivities extends StatefulWidget {
-  final String emotion;
+  final Emotion emotion;
 
   DevActivities({Key key, @required this.emotion}) : super(key: key);
 
@@ -15,7 +16,7 @@ class DevActivities extends StatefulWidget {
 }
 
 class DevActivitiesState extends State<DevActivities> {
-  String selectedEmotion;
+  Emotion selectedEmotion;
   List<Activity> selectedActivities = List();
   List<Activity> _developerActivities;
   List<Category> _categories;
@@ -163,7 +164,7 @@ class DevActivitiesState extends State<DevActivities> {
           .collection('users/' + user.uid + '/journal')
           .document()
           .setData({
-        'emotion': this.selectedEmotion,
+        'emotion': this.selectedEmotion.toMap(),
         'activities': FieldValue.arrayUnion(activities.map((f) {
           return f.title;
         }).toList()),
