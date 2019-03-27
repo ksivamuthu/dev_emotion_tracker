@@ -23,8 +23,7 @@ platform :ios do
     get_provisioning_profile
     enable_automatic_code_signing
     increment_build_number(
-        build_number: latest_testflight_build_number + 1,
-        xcodeproj: "Runner.xcodeproj"
+      xcodeproj: "Runner.xcodeproj"
     )
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner")
     upload_to_testflight
