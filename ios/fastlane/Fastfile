@@ -21,11 +21,12 @@ platform :ios do
     xcversion(version: "~> 10.0.0")
     get_certificates
     get_provisioning_profile
-    enable_automatic_code_signing
+    disable_automatic_code_signing
     increment_build_number(
       xcodeproj: "Runner.xcodeproj"
     )
     build_app(workspace: "Runner.xcworkspace", scheme: "Runner", export_xcargs: "-allowProvisioningUpdates")
+    enable_automatic_code_signing
     upload_to_testflight
   end
 end
