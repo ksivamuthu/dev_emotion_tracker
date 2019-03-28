@@ -18,11 +18,18 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    xcversion(version: "~> 10.0.0")
     cert
     sigh
     increment_build_number(
-      xcodeproj: "Runner.xcodeproj"
+      xcodeproj: "Runner.xcodeproj",
+      build_number: latest_testflight_build_number + 1
+    )
+    disable_automatic_code_signing
+    update_project_provisioning(
+      xcodeproj: "Runner.xcodeproj",
+      target_filter: ".*Runner.*", # matches name or type of a target
+      build_configuration: "Release",
+      code_signing_identity: "iPhone Distribution"
     )
     build_app(
       export_method: "app-store",
@@ -32,6 +39,7 @@ platform :ios do
       output_directory: "./build",
       archive_path: "./archives"
     )
+    enable_automatic_code_signing
     upload_to_testflight
   end
 end

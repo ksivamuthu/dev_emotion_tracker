@@ -432,7 +432,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.siva.devemotiontracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "eaf9e631-60dc-493f-a4a7-8caba5cf7bbc";
+				PROVISIONING_PROFILE_SPECIFIER = "com.siva.devemotiontracker AppStore";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Profile;
@@ -562,7 +563,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.siva.devemotiontracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "eaf9e631-60dc-493f-a4a7-8caba5cf7bbc";
+				PROVISIONING_PROFILE_SPECIFIER = "com.siva.devemotiontracker AppStore";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -572,7 +574,7 @@
 			baseConfigurationReference = 7AFA3C8E1D35360C0083082E /* Release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = YD5YS4DV3N;
@@ -590,7 +592,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.siva.devemotiontracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "eaf9e631-60dc-493f-a4a7-8caba5cf7bbc";
+				PROVISIONING_PROFILE_SPECIFIER = "com.siva.devemotiontracker AppStore";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
