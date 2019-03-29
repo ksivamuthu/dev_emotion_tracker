@@ -22,7 +22,7 @@ module Fastlane
             timestamp.hour,
             timestamp.min,
           ]
-          current_version = Actions::GetVersionNumberAction.run(xcodeproj: "QuizUp.xcodeproj")
+          current_version = Actions::GetVersionNumberAction.run(xcodeproj: "Runner.xcodeproj")
   
           new_version = current_version + "." + new_build_identifier
   
