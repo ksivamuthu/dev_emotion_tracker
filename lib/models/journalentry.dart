@@ -10,9 +10,12 @@ class JournalEntry {
 
   static fromData(Map data) {
     return JournalEntry(
-      Emotion.fromData(data["emotion"]["id"], data["emotion"]),
+      Emotion.fromData(
+        data["emotion"]["id"],
+        data["emotion"],
+      ),
       List.from(data["activities"]),
-      (data["timestamp"] as Timestamp).toDate(),
+      (data["timestamp"] as DateTime),
     );
   }
 

@@ -86,9 +86,29 @@ class DevActivitiesState extends State<DevActivities> {
 
   Widget _buildCategoriesList(BuildContext context, List<Category> categories) {
     return ListView.builder(
-      itemCount: categories.length,
+      itemCount: categories.length + 1,
       itemBuilder: (context, i) {
-        Category category = categories[i];
+        if (i == 0) {
+          return Center(
+            child: Column(
+              children: [
+                Text(
+                  this.selectedEmotion.icon,
+                  style: TextStyle(
+                    fontSize: 40,
+                  ),
+                ),
+                Text(
+                  this.selectedEmotion.title,
+                  style: TextStyle(
+                    fontSize: 32,
+                  ),
+                )
+              ],
+            ),
+          );
+        }
+        Category category = categories[i - 1];
         return ListTile(
           title: Padding(
             padding: EdgeInsets.only(

@@ -2,6 +2,9 @@ import 'package:dev_emotion_tracker/devactivities.dart';
 import 'package:dev_emotion_tracker/models/emotion.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+import 'package:device_info/device_info.dart';
 
 class AddEmotionDialog extends StatefulWidget {
   @override
@@ -11,14 +14,57 @@ class AddEmotionDialog extends StatefulWidget {
 }
 
 class AddEmotionDialogState extends State<AddEmotionDialog> {
-  List<String> _emotions;
+  List<Emotion> _emotions;
 
   Emotion _selectedEmotion;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Add Emotion")),
+      appBar: AppBar(
+        title: Text("Add Emotion"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.camera_enhance),
+            onPressed: () async {
+              var isPhysicalDevice =
+                  (await DeviceInfoPlugin().iosInfo).isPhysicalDevice;
+              final image = await ImagePicker.pickImage(
+                  source: isPhysicalDevice
+                      ? ImageSource.camera
+                      : ImageSource.gallery,
+                  maxWidth: 800,
+                  maxHeight: 600);
+              if (image == null) return;
+
+              final FirebaseVisionImage visionImage =
+                  FirebaseVisionImage.fromFile(image);
+              final FaceDetector faceDetector =
+                  FirebaseVision.instance.faceDetector(
+                FaceDetectorOptions(enableClassification: true),
+              );
+              var faces = await faceDetector.detectInImage(visionImage);
+              if (faces != null && faces.length > 0) {
+                var probability = faces[0].smilingProbability;
+                var sentiment = '';
+                if (probability >= 0.7) {
+                  sentiment = 'happy';
+                } else if (probability < 0.7 && probability >= 0.4) {
+                  sentiment = 'neutral';
+                } else {
+                  sentiment = 'sad';
+                }
+
+                setState(() {
+                  this._selectedEmotion = _emotions.firstWhere((x) {
+                    return x.id == sentiment;
+                  });
+                });
+              }
+            },
+          )
+        ],
+      ),
       body: Padding(
         padding: EdgeInsets.all(20),
         child: _buildStreamWidget(),
@@ -49,6 +95,8 @@ class AddEmotionDialogState extends State<AddEmotionDialog> {
           return Emotion.fromSnapshot(f);
         }).toList();
 
+        this._emotions = emotions;
+
         return GridView.count(
           crossAxisCount: 3,
           children: _buildEmotionImages(emotions),
@@ -59,45 +107,6 @@ class AddEmotionDialogState extends State<AddEmotionDialog> {
 
   List<Widget> _buildEmotionImages(List<Emotion> emotions) {
     List<Widget> widgets = List();
-
-    widgets.add(FlatButton(
-      onPressed: () {},
-      child: Column(
-        children: <Widget>[
-          Icon(Icons.add, size: 50),
-          Chip(
-              label: Text("Create"),
-              labelStyle: TextStyle(color: Colors.white),
-              backgroundColor: Colors.green)
-        ],
-      ),
-    ));
-
-    widgets.add(FlatButton(
-      onPressed: () {},
-      child: Column(
-        children: <Widget>[
-          Icon(Icons.camera, size: 50),
-          Chip(
-              label: Text("Camera"),
-              labelStyle: TextStyle(color: Colors.white),
-              backgroundColor: Colors.green)
-        ],
-      ),
-    ));
-
-    widgets.add(FlatButton(
-      onPressed: () {},
-      child: Column(
-        children: <Widget>[
-          Icon(Icons.image, size: 50),
-          Chip(
-              label: Text("Gallery"),
-              labelStyle: TextStyle(color: Colors.white),
-              backgroundColor: Colors.green)
-        ],
-      ),
-    ));
 
     for (var emotion in emotions) {
       widgets.add(
