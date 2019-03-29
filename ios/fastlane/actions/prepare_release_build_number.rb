@@ -22,15 +22,10 @@ module Fastlane
             timestamp.hour,
             timestamp.min,
           ]
-          current_version = Actions::GetVersionNumberAction.run(xcodeproj: "Runner.xcodeproj")
+            
+          Actions::IncrementBuildNumberAction.run(build_number: new_build_identifier)
   
-          new_version = current_version + "." + new_build_identifier
-  
-          Helper.log.info "Changed build number to #{new_version}".green
-  
-          Actions::IncrementBuildNumberAction.run(build_number: new_version)
-  
-          Actions.lane_context[SharedValues::RELEASE_BUILD_NUMBER] = new_version
+          Actions.lane_context[SharedValues::RELEASE_BUILD_NUMBER] = new_build_identifier
         end
   
   

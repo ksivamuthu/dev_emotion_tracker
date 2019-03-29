@@ -18,7 +18,7 @@ default_platform(:ios)
 platform :ios do
   desc "Push a new beta build to TestFlight"
   lane :beta do
-    xcversion(version: "~> 10.0.0")
+    #xcversion(version: "~> 10.0.0")
     cert
     sigh
     prepare_release_build_number
@@ -38,11 +38,11 @@ platform :ios do
       archive_path: "./archives"
     )
     enable_automatic_code_signing
-    pilot(
-      skip_submission: true,
-      notify_external_testers: false,
-      reject_build_waiting_for_review: true,
-      wait_for_uploaded_build: true
+    appcenter_upload(
+      api_token: "2eaebc7218e0e852f6fbda0d09caeb76b259aba7",
+      ipa: "./build/Runner.ipa",
+      app_name: "Dev-Emotion-Tracker",
+      owner_name: "sivamuthukumar07-9toj"
     )
   end
 end
