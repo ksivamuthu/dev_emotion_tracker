@@ -34,6 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   FirebaseUser _currentUser;
+  List<JournalEntry> _journalEntries = List<JournalEntry>();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -81,16 +82,19 @@ class _MyHomePageState extends State<MyHomePage> {
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) return LinearProgressIndicator();
-
-          return _buildList(context, snapshot.data.documents);
+          var journalList = List<JournalEntry>();
+          for (var doc in snapshot.data.documents) {
+            journalList.add(JournalEntry.fromSnapshot(doc));
+          }
+          return _buildList(context, journalList);
         });
   }
 
-  Widget _buildList(BuildContext context, List<DocumentSnapshot> documents) {
+  Widget _buildList(BuildContext context, List<JournalEntry> journalEntries) {
     return ListView.builder(
-      itemCount: documents.length,
+      itemCount: journalEntries.length,
       itemBuilder: (context, i) {
-        return _buildListItem(context, JournalEntry.fromSnapshot(documents[i]));
+        return _buildListItem(context, journalEntries[i]);
       },
     );
   }
@@ -103,6 +107,14 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Card(
         elevation: 5,
         child: ListTile(
+          onLongPress: () async {
+            await Firestore.instance
+                .collection('users/${_currentUser.uid}/journal')
+                .document(journalEntry.id)
+                .delete();
+            Scaffold.of(context)
+                .showSnackBar(SnackBar(content: Text("Entry deleted")));
+          },
           contentPadding:
               EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
           leading: Container(

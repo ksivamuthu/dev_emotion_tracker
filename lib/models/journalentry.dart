@@ -2,14 +2,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dev_emotion_tracker/models/emotion.dart';
 
 class JournalEntry {
+  final String id;
   final Emotion emotion;
   final List<String> activities;
   final DateTime entryDate;
 
-  JournalEntry(this.emotion, this.activities, this.entryDate);
+  JournalEntry(this.id, this.emotion, this.activities, this.entryDate);
 
-  static fromData(Map data) {
+  static fromData(String id, Map data) {
     return JournalEntry(
+      id,
       Emotion.fromData(
         data["emotion"]["id"],
         data["emotion"],
@@ -20,6 +22,6 @@ class JournalEntry {
   }
 
   static fromSnapshot(DocumentSnapshot snapshot) {
-    return JournalEntry.fromData(snapshot.data);
+    return JournalEntry.fromData(snapshot.documentID, snapshot.data);
   }
 }

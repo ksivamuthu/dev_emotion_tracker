@@ -5,47 +5,47 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.001166">
+      <testcase classname="fastlane.lanes" name="0: default_platform" time="0.001395">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="1: cert" time="2.967665">
+      <testcase classname="fastlane.lanes" name="1: cert" time="6.957077">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="2: sigh" time="4.72929">
+      <testcase classname="fastlane.lanes" name="2: sigh" time="5.351414">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="3: prepare_release_build_number" time="1.069556">
+      <testcase classname="fastlane.lanes" name="3: prepare_release_build_number" time="0.942497">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="4: automatic_code_signing" time="0.063345">
+      <testcase classname="fastlane.lanes" name="4: automatic_code_signing" time="0.123233">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="5: update_project_provisioning" time="0.042463">
+      <testcase classname="fastlane.lanes" name="5: update_project_provisioning" time="0.036778">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="6: build_app" time="140.883523">
+      <testcase classname="fastlane.lanes" name="6: build_app" time="136.186738">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="7: automatic_code_signing" time="0.030447">
+      <testcase classname="fastlane.lanes" name="7: automatic_code_signing" time="0.029473">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="8: appcenter_upload" time="43.610158">
+      <testcase classname="fastlane.lanes" name="8: appcenter_upload" time="27.961751">
         
       </testcase>
     
