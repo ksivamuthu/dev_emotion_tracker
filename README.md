@@ -1,18 +1,24 @@
-[![Codemagic build status](https://api.codemagic.io/apps/5c913dc878ed13001bdcc012/5c913dc878ed13001bdcc011/status_badge.svg)](https://codemagic.io/apps/5c913dc878ed13001bdcc012/5c913dc878ed13001bdcc011/latest_build)
-
 # Developer Emotion Tracker
 
-A new Flutter project.
+Developer Emotion Tracker - Application built with flutter, firebase & fastlane. This application helps to track the emotion in developer's activities. 
+
+Slides are here: https://slides.com/sivamuthukumar/flutter-firebase-fastlane
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To get started with Flutter, view Flutter's [online documentation](https://flutter.io/docs), which offers tutorials, samples, guidance on mobile development, and a full API reference.
 
-A few resources to get you started if this is your first Flutter project:
+## Screens
 
-- [Lab: Write your first Flutter app](https://flutter.io/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.io/docs/cookbook)
+1. Main Screen - List the developer emotion, activity that triggers the emotion and date the emotion is captured
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.io/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+<img src="docs/1.png" width="300px"></img>
+
+2. Add Emotion - User can select the emotion or take picture to detect the emotion from their face.
+
+<img src="docs/2.png" width="300px"></img>
+
+3. Add Activity - Select activity that triggers the emotion
+
+<img src="docs/3.png" width="300px"></img>
+
