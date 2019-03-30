@@ -49,7 +49,10 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
-    _auth.signInAnonymously().then((user) {
+    _auth
+        .signInWithEmailAndPassword(
+            email: "test@fluttersiva.dev", password: "flutter123\$")
+        .then((user) {
       setState(() {
         _currentUser = user;
       });
